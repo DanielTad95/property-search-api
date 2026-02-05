@@ -52,9 +52,12 @@
                         <el-form-item label="Bedrooms">
                             <el-input-number 
                                 v-model="searchParams.bedrooms" 
+                                :min="1"
+                                :max="10"
+                                :step="1"
                                 placeholder="Number of bedrooms"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -63,9 +66,12 @@
                         <el-form-item label="Bathrooms">
                             <el-input-number 
                                 v-model="searchParams.bathrooms" 
+                                :min="1"
+                                :max="10"
+                                :step="1"
                                 placeholder="Number of bathrooms"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -74,9 +80,12 @@
                         <el-form-item label="Storeys">
                             <el-input-number 
                                 v-model="searchParams.storeys" 
+                                :min="1"
+                                :max="5"
+                                :step="1"
                                 placeholder="Number of storeys"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -85,9 +94,12 @@
                         <el-form-item label="Garages">
                             <el-input-number 
                                 v-model="searchParams.garages" 
+                                :min="1"
+                                :max="5"
+                                :step="1"
                                 placeholder="Number of garages"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -96,9 +108,11 @@
                         <el-form-item label="Min Price ($)">
                             <el-input-number 
                                 v-model="searchParams.price_min" 
+                                :min="0"
+                                :step="10000"
                                 placeholder="Minimum price"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -107,9 +121,11 @@
                         <el-form-item label="Max Price ($)">
                             <el-input-number 
                                 v-model="searchParams.price_max" 
+                                :min="0"
+                                :step="10000"
                                 placeholder="Maximum price"
                                 style="width: 100%;"
-                                clearable
+                                controls-position="right"
                             />
                         </el-form-item>
                     </el-col>
@@ -158,11 +174,31 @@
                 stripe
                 style="width: 100%;"
             >
-                <el-table-column prop="name" label="Name" min-width="180" />
-                <el-table-column prop="bedrooms" label="Bedrooms" width="120" align="center" />
-                <el-table-column prop="bathrooms" label="Bathrooms" width="120" align="center" />
-                <el-table-column prop="storeys" label="Storeys" width="120" align="center" />
-                <el-table-column prop="garages" label="Garages" width="120" align="center" />
+                <el-table-column label="Name" min-width="180">
+                    <template #default="scope">
+                        @{{ scope.row.name }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="Bedrooms" width="120" align="center">
+                    <template #default="scope">
+                        @{{ scope.row.bedrooms }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="Bathrooms" width="120" align="center">
+                    <template #default="scope">
+                        @{{ scope.row.bathrooms }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="Storeys" width="120" align="center">
+                    <template #default="scope">
+                        @{{ scope.row.storeys }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="Garages" width="120" align="center">
+                    <template #default="scope">
+                        @{{ scope.row.garages }}
+                    </template>
+                </el-table-column>
                 <el-table-column label="Price" width="150" align="right">
                     <template #default="scope">
                         $@{{ formatPrice(scope.row.price) }}

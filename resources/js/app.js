@@ -38,8 +38,11 @@ const app = createApp({
 
                 const response = await axios.get('/api/properties/search', { params });
                 
+                console.log('API Response:', response.data);
+                
                 if (response.data.success) {
                     this.properties = response.data.data;
+                    console.log('Properties:', this.properties);
                 }
             } catch (error) {
                 console.error('Search error:', error);
